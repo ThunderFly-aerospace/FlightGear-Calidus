@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+ 
+<PropertyList>
+
+ <fx>
+ 
+  <crank>
+   <name>crank</name>
+   <mode>looped</mode>
+   <path>Sounds/cranking.wav</path>
+   <condition>
+    <property>engines/engine/cranking</property>
+    <not>
+     <property>engines/engine/running</property>
+    </not>
+   </condition>
+   <position>
+    <x>-1.0</x>
+    <y>0.0</y>
+    <z>0.0</z>
+   </position>
+   <volume>
+    <offset>0.5</offset>
+   </volume>
+  </crank>
+
+  <engine>
+    <name>engine</name>
+    <mode>looped</mode>
+    <path>Sounds/wasp.wav</path>
+    <property>engines/engine/running</property>
+    <volume>
+      <property>engines/engine/mp-osi</property>
+      <factor>0.027777</factor>
+      <!-- these values of min and max are unlikely to be relevant,
+           because the MAP is unlikely to go below 5" or above 28".
+           Also note that propeller noise is additional to engine
+           noise, rather like an <offset>.
+             -->
+      <max>1.0</max>
+      <min>0.10</min>
+    </volume>
+    <pitch>
+      <property>engines/engine/rpm</property>
+      <factor>0.0004</factor>
+      <min>0.0</min>
+      <max>2.0</max>
+      <offset>0.01</offset>
+    </pitch>
+  </engine>
+
+  <propeller>
+    <name>propeller</name>
+    <mode>looped</mode>
+    <path>Sounds/wasp.wav</path>
+    <condition>
+      <greater-than>
+        <property>engines/engine/rpm</property>
+        <value>10</value>
+      </greater-than>
+    </condition>
+    <volume>
+      <property>engines/engine/rpm</property>
+      <factor>0.0001</factor>
+      <max>0.25</max>
+    </volume>
+    <pitch>
+      <property>engines/engine/rpm</property>
+      <factor>0.0004</factor>
+      <min>0.0</min>
+      <max>2.0</max>
+      <offset>0.01</offset>
+    </pitch>
+  </propeller>
+
+  <rumble>
+   <name>rumble</name>
+   <mode>looped</mode>
+   <path>Sounds/rumble.wav</path>
+   <condition>
+    <or>
+     <property>gear/gear[0]/wow</property>
+     <property>gear/gear[1]/wow</property>
+     <property>gear/gear[2]/wow</property>
+    </or>
+    <!-- <property>sim/current-view/internal</property> -->
+   </condition>
+   <position>
+    <x>1.0</x>
+    <y>0.0</y>
+    <z>-1.5</z>
+   </position>
+   <volume>
+    <property>velocities/airspeed-kt</property>
+    <type>log</type>
+    <factor>0.25</factor>
+   </volume>
+  </rumble>
+
+  <squeal>
+   <name>squeal</name>
+   <path>Sounds/squeal.wav</path>
+   <condition>
+    <and>
+     <or>
+      <property>gear/gear[0]/wow</property>
+      <property>gear/gear[1]/wow</property>
+      <property>gear/gear[2]/wow</property>
+     </or>
+     <less-than>
+      <property>velocities/vertical-speed-fps</property>
+      <value>-0.05</value>
+     </less-than>
+    </and>
+   </condition>
+   <position>
+    <x>1.0</x>
+    <y>0.0</y>
+    <z>-1.5</z>
+   </position>
+   <volume>
+    <property>velocities/groundspeed-kt</property>
+    <factor>0.01</factor>
+    <max>1.0</max>
+   </volume>
+   <volume>
+    <internal>dt_stop</internal>
+    <factor>0.1</factor>
+    <max>1.0</max>
+   </volume>
+   <pitch>
+    <property>velocities/airspeed-kt</property>
+    <factor>0.0025</factor>
+    <offset>1.2</offset>
+   </pitch>
+  </squeal>
+
+  <wind>
+   <name>wind</name>
+   <mode>looped</mode>
+   <path>Sounds/wind.wav</path>
+   <condition>
+    <and>
+     <property>velocities/airspeed-kt</property>
+     <property>sim/current-view/internal</property>
+    </and>
+   </condition>
+   <volume>
+    <property>position/altitude-ft</property>
+    <factor>-0.000015</factor>
+    <offset>1.0</offset>
+    <min>0.1</min>
+    <max>1.0</max>
+   </volume>
+   <volume>
+     <property>velocities/airspeed-kt</property>
+     <factor>0.0015</factor>
+     <min>0.03</min>
+     <max>0.25</max>
+   </volume>
+   <pitch>
+    <property>velocities/airspeed-kt</property>
+    <factor>0.0035</factor>
+    <offset>1.25</offset>
+   </pitch>
+  </wind>
+ 
+
+
+</fx>
+ 
+</PropertyList>

@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+
+<system name="rotor">
+
+  <property value="0.0">systems/rotor/clutch-cmd-norm</property>
+  <property value="0.0">systems/rotor/brake-cmd-norm</property>
+  <property value="0.0">systems/rotor/pre-rotator-engaged</property>
+
+ 
+  <!-- Clutch ********************************************** -->
+
+  <channel name="clutch">
+
+   <kinematic name="clutch control">
+     <input>systems/rotor/clutch-cmd-norm</input>
+     <traverse>
+       <setting>
+          <position> 0 </position>
+          <time>     0 </time>
+       </setting>
+       <setting>
+          <position> 1 </position>
+          <time>     1 </time>
+       </setting>
+     </traverse>
+     <output>propulsion/engine[1]/clutch-ctrl-norm</output>
+   </kinematic>
+
+  </channel>
+
+
+  <!-- Brake *********************************************** -->
+
+  <channel name="brake">
+
+   <kinematic name="brake control">
+     <input>systems/rotor/brake-cmd-norm</input>
+     <traverse>
+       <setting>
+          <position> 0 </position>
+          <time>     0 </time>
+       </setting>
+       <setting>
+          <position> 1 </position>
+          <time>     4 </time>
+       </setting>
+     </traverse>
+     <output>propulsion/engine[1]/brake-ctrl-norm</output>
+   </kinematic>
+
+  </channel>
+
+
+  <!-- Pre-Rotator ****************************************** -->
+
+  <channel name="pre-rotator">
+
+     <switch name="systems/rotor/pre-rotator-control">
+          <default value="systems/rotor/pre-rotator-engaged"/>
+          <test value="0">
+                propulsion/engine[1]/rotor-rpm gt 250
+          </test>
+          <output>systems/rotor/clutch-cmd-norm</output>
+          <output>/controls/engines/engine[1]/throttle</output>
+          <output>systems/rotor/pre-rotator-engaged</output>
+     </switch>
+
+  </channel>
+
+</system>

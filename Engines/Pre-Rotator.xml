@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!--
+  Models a 12 HP electric Pre-rotator motor
+-->
+
+<electric_engine name="Pre-rotator">
+  <power unit="HP">  8.0 </power>
+</electric_engine>

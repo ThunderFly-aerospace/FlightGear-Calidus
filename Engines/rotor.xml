@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<rotor name="rotor">
+
+  <diameter  unit="FT">                 27.56 </diameter>
+  <numblades>                               2 </numblades>
+  <gearratio>                           20.00 </gearratio>   
+  <nominalrpm>                          250.0 </nominalrpm> 
+  <chord unit="FT">                      0.66 </chord>
+  <liftcurveslope>                        6.0 </liftcurveslope>
+  <flappingmoment unit="SLUG*FT2">       30.0 </flappingmoment>
+  <twist>                              -0.175 </twist>
+  <massmoment>                            3.0 </massmoment>  
+  <tiplossfactor>                         1.0 </tiplossfactor>
+  <polarmoment unit="SLUG*FT2">          70.0 </polarmoment>
+  <inflowlag>                            0.03 </inflowlag>
+  <hingeoffset unit="FT">                1.25 </hingeoffset>
+  <freewheelthresh>                      1.5  </freewheelthresh>
+  <groundeffectexp>                     0.19 </groundeffectexp>
+  <groundeffectshift unit="FT">           10 </groundeffectshift>
+
+</rotor>

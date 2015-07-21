@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<!--
+************************************************************************
+Calidus config file
+David Culp,  daveculp@cox.net
+License: Creative Commons CC-BY-NC-SA
+************************************************************************
+-->
+
+<PropertyList>
+
+ <sim>
+
+  <description>Calidus Gyrocopter</description>
+  <author>David Culp</author>
+  <status>alpha</status>
+
+  <flight-model>jsb</flight-model>
+  <aero>Calidus-FDM</aero>
+
+  <startup>
+   <splash-texture>Aircraft/Calidus/Calidus-splash.png</splash-texture>
+  </startup>
+
+  <sound>
+   <path>Aircraft/Calidus/Sounds/sound-config.xml</path>
+  </sound>
+
+  <virtual-cockpit archive="y">true</virtual-cockpit>
+  <allow-toggle-cockpit archive="y">false</allow-toggle-cockpit>
+
+  <model>
+   <path archive="y">Aircraft/Calidus/Models/Calidus.xml</path>
+  </model>
+
+  <view n="0">
+   <internal archive="y">true</internal>
+   <config>
+    <pitch-offset-deg>-4.0</pitch-offset-deg>
+    <x-offset-m archive="y">0.0</x-offset-m><!-- right/left -->
+    <y-offset-m archive="y">0.18</y-offset-m><!-- up/down -->
+    <z-offset-m archive="y">-0.47</z-offset-m><!-- aft/fore -->
+   </config>
+  </view>
+
+  <chase-distance-m type="double" archive="y">-10.0</chase-distance-m>
+
+  <input>
+    <selected>
+       <engine n="0" type="bool">true</engine> 
+       <engine n="1" type="bool">false</engine> 
+    </selected>
+  </input>
+
+  <help>
+   <key>
+    <name>Shift-Q</name>
+    <desc>magnetos toggle 0-3</desc>
+   </key>
+   <key>
+    <name>m (lower case m) </name>
+    <desc>Nose wheel steering</desc>
+   </key>
+   <key>
+    <name>c (lower case c) </name>
+    <desc>Open/Close canopy</desc>
+   </key>
+   <key>
+    <name>s (lower case s)</name>
+    <desc>Toggle starter</desc>
+   </key>
+  </help>
+
+  <rendering>
+    <redout>
+      <parameters>
+        <blackout-onset-g>4.0</blackout-onset-g>
+        <blackout-complete-g>8.0</blackout-complete-g>
+      </parameters> 
+    </redout>
+  </rendering>
+
+  <multiplay>
+    <generic>
+     <int n="0" type="int">0</int>
+     <int n="1" type="int">0</int>
+     <int n="2" type="int">0</int>
+     <int n="3" type="int">0</int>
+     <int n="4" type="int">0</int>
+     <int n="5" type="int">0</int>
+     <int n="6" type="int">0</int>
+     <int n="7" type="int">0</int>
+     <int n="8" type="int">0</int>
+     <int n="9" type="int">0</int>
+     <int n="10" type="int">0</int>
+     <int n="11" type="int">0</int>
+     <int n="12" type="int">0</int>
+    </generic>
+  </multiplay>
+
+ </sim>
+
+ <controls>
+  <engines>
+   <engine n="0">
+    <magnetos>3</magnetos>
+    <propeller-pitch>1.0</propeller-pitch>
+    <mixture>1.0</mixture>
+   </engine>
+  </engines>
+  <flight>
+   <elevator-trim>0</elevator-trim>
+  </flight>
+  <lighting>
+   <instruments-norm>0.7</instruments-norm>
+  </lighting>
+  <gear>
+   <brake-parking type="double">1</brake-parking>
+  </gear>
+ </controls>
+
+<input>
+ <keyboard>
+
+
+    <key n="99">
+     <name>c</name>
+     <desc>toggle canopy</desc>
+     <binding>
+       <command>property-toggle</command>
+       <property>fdm/jsbsim/systems/canopy/command</property>
+     </binding>
+    </key>
+
+    <key n="109">
+     <name>m</name>
+     <desc>engage nose wheel steering</desc>
+     <binding>
+      <command>property-assign</command>
+      <property>fdm/jsbsim/systems/NWS/engaged</property>
+      <value>1</value> 
+     </binding>
+     <mod-up>
+       <binding>
+        <command>property-assign</command>
+        <property>fdm/jsbsim/systems/NWS/engaged</property>
+        <value>0</value> 
+       </binding>
+     </mod-up>
+    </key>
+
+    <key n="81">
+     <name>Shift-Q</name>
+     <desc>Toggle magnetos</desc>
+     <binding>
+      <command>property-cycle</command>
+      <value>3</value>
+      <value>0</value>
+      <property>controls/engines/engine[0]/magnetos</property>
+     </binding>
+    </key>
+
+     <key n="106">
+     <name>j</name>
+     <desc>Engage rotor pre-rotator</desc>
+     <binding>
+      <command>property-assign</command>
+      <property>fdm/jsbsim/propulsion/active_engine</property>
+      <value>1</value>
+     </binding>
+     <binding>
+      <command>property-assign</command>
+      <property>fdm/jsbsim/systems/rotor/pre-rotator-engaged</property>
+      <value>1</value>
+     </binding>
+     </key>
+
+     <key n="107">
+     <name>k</name>
+     <desc>Toggle rotor brake</desc>
+     <binding>
+      <command>property-toggle</command>
+      <property>fdm/jsbsim/systems/rotor/brake-cmd-norm</property>
+      <value>1</value> 
+      <value>0</value>
+     </binding>
+     </key>
+
+
+ </keyboard>
+</input>
+
+ <instrumentation>
+  <marker-beacon>
+    <volume type="double" archive="y">0.0</volume>
+  </marker-beacon>
+  <rdmi-mode type="int">0</rdmi-mode> <!-- 0=TAC, 1=VOR, 2=ADF -->
+ </instrumentation>
+
+
+ <fdm>
+  <jsbsim>
+   <simulation>
+     <sim-time-sec>0</sim-time-sec>
+   </simulation>
+   <systems>
+    <NWS>
+      <engaged type="double">0</engaged>
+    </NWS>
+    <canopy>
+      <command type="double">0</command>
+    </canopy>
+   </systems> 
+   <propulsion>
+     <engine n="1">
+       <collective-ctrl-rad type="double">0.245</collective-ctrl-rad>
+     </engine>
+     <active_engine type="int">0</active_engine>
+     <magneto_cmd>3</magneto_cmd>
+   </propulsion>
+  </jsbsim>
+ </fdm>
+
+ <canopy>
+  <position-norm type="double">0</position-norm>
+ </canopy>
+
+</PropertyList>
