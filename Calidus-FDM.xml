@@ -69,10 +69,26 @@
    <izz unit="SLUG*FT2">       437 </izz>
    <emptywt unit="LBS" >       580 </emptywt>
    <location name="CG" unit="IN">
-     <x>  84.0 </x>
+     <x>  81.0 </x>
      <y>   0.0 </y>
      <z>  10.0 </z>
    </location>
+   <pointmass name="Pilot">
+     <weight unit="LBS"> 180 </weight>
+     <location name="POINTMASS" unit="IN">
+       <x> 58 </x>
+       <y>  0 </y>
+       <z>  0 </z>
+     </location>
+   </pointmass>
+   <pointmass name="Passenger">
+     <weight unit="LBS"> 180 </weight>
+     <location name="POINTMASS" unit="IN">
+       <x> 78 </x>
+       <y>  0 </y>
+       <z>  3 </z>
+     </location>
+   </pointmass>
  </mass_balance>
 
  <ground_reactions>
@@ -160,6 +176,7 @@
        <roll>  0.00 </roll>
        <yaw>   0.00 </yaw>
      </orient>
+     <sense>-1</sense>
     </thruster>
   </engine>
 
@@ -177,7 +194,7 @@
        <z>  85.7 </z>
      </location>
      <orient unit="DEG">
-       <pitch> 90.0 </pitch>
+       <pitch> 94.0 </pitch>
        <roll>   0.0 </roll>
        <yaw>    0.0 </yaw>
      </orient>
@@ -187,7 +204,7 @@
 
   <tank type="FUEL" number="0">
      <location unit="IN">
-       <x> 101.0 </x>
+       <x>  85.0 </x>
        <y>   0.0 </y>
        <z>   6.0 </z>
      </location>
