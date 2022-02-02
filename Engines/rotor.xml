@@ -9,11 +9,11 @@
   <chord unit="FT">                      0.66 </chord>
   <liftcurveslope>                        6.0 </liftcurveslope>
   <flappingmoment unit="SLUG*FT2">       30.0 </flappingmoment>
-  <twist>                              -0.175 </twist>
+  <twist>                              -0.0 </twist>
   <massmoment>                            3.0 </massmoment>  
   <tiplossfactor>                         1.0 </tiplossfactor>
   <polarmoment unit="SLUG*FT2">          70.0 </polarmoment>
-  <inflowlag>                            0.03 </inflowlag>
+  <inflowlag>                            0.3 </inflowlag>
   <hingeoffset unit="FT">                1.25 </hingeoffset>
   <freewheelthresh>                      1.5  </freewheelthresh>
   <groundeffectexp>                     0.19 </groundeffectexp>
